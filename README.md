@@ -6,7 +6,7 @@ This task should follow the following specification:
 
 There will be 2 user roles: Admin (can edit) and User (can only filter and search)
 
-### Modules
+## Modules
 
 - Train Dashboard Module
   - View all
@@ -22,6 +22,8 @@ There will be 2 user roles: Admin (can edit) and User (can only filter and searc
 - register - Optional
 - Forgot password - Optional
 - Search TBD
+
+## Data
 
 ### Train
 
@@ -46,6 +48,16 @@ A train wagon must consist of the follwoing information: wagon class (1,2,3), wa
 - wagonType: string - seat | sleep | buffet
 - seats: number - number of available seats
 
+### Ticket
+
+Issued tickets for each user
+
+- id: number
+- uid: number - user id
+- tid: train id
+- wid: wagon id
+- seat: number | null
+
 ### Trains Overview / Schedule Dashboart
 
 Display list of all trains.
@@ -66,12 +78,41 @@ https://github.com/samuil4/ticket-reservation-demo-server
 - GET/PUT/POST/DELETE wagons
 - GET/PUT/POST/DELETE wagons/:id
 
-## API Firebase
+## Firebase
+
+### Setup
 
 > Install firebase `npm install -g firebase-tools`
 
-> Login to firebase via CLI
+> Login and deploy to firebase via CLI
 
-- `firebase init`
 - `firebase login`
+- `firebase init`
 - `firebase deploy`
+
+### Setup Web Console
+
+#### DB Rules
+
+```javascript
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read, update, delete: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+    }
+    match /trains/{trainId} {
+      allow read: if true;
+      allow create, update, delete: if request.auth.uid != null;
+    }
+    match /wagons/{wagonId} {
+      allow read, create, update, delete: if request.auth.uid != null;
+    }
+    match /tickets/{ticketId} {
+      allow read, update, delete: if resource.data.uid == 'users/' + request.auth.uid;
+      allow create: if exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+  }
+}
+```
