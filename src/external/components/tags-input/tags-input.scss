@@ -1,0 +1,16 @@
+.tags-input-wrapper {
+  .input-field {
+    display: block;
+    input, .entered-items {
+      width: auto;
+      display: inline-block;
+    }
+  }
+
+  .entered-tag {
+    background-color: rgba(18, 125, 104, 0.3);
+    padding: 3px 9px;
+    margin-right: 10px;
+    margin-bottom: 6px;
+  }
+}
