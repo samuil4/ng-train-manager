@@ -1,4 +1,7 @@
 <p>
-  register works!
-  <app-auth-form (executeAuth)="initiateRegister($event)"></app-auth-form>
+  <app-auth-form (executeAuth)="initiateRegister($event)">
+    <h1>Register</h1>
+    <button type="submit">Register Account</button>
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </app-auth-form>
 </p>

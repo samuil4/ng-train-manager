@@ -8,6 +8,8 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  errorMessage: string;
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {}
@@ -18,9 +20,11 @@ export class RegisterComponent implements OnInit {
 
     try {
       await this.authService.createUser(email, password);
+      //
     } catch (error) {
       // Catcfh error and handle error message
-      console.log(error);
+      console.log(error.message);
+      this.errorMessage = error.message;
     }
   }
 }

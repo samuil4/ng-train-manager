@@ -67,11 +67,11 @@ The user can filter the trains by entering: ID(name), Departure destination, Arr
 
 ## Role User
 
-## API static
+## API static - deprecated
 
 https://github.com/samuil4/ticket-reservation-demo-server
 
-### End points
+### End points - deprecated
 
 - GET/trains
 - GET/PUT/POST/DELETE trains/:id
@@ -116,3 +116,16 @@ service cloud.firestore {
   }
 }
 ```
+
+### Setup AngularFire
+
+- `yarn add angularfire2@next`
+- `yarn add @firebase/database`
+- `yarn add @firebase/auth`
+- `yarn add @firebase/app`
+- `yarn add @firebase/firestore-types`
+- `yarn add @firebase/storage-types`
+- `yarn add @firebase/messaging-types`
+- `yarn add @firebase/util`
+- `yarn add @firebase/database-types`
+- `yarn add @firebase/auth-types`

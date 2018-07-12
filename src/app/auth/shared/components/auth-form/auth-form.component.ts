@@ -24,6 +24,11 @@ export class AuthFormComponent implements OnInit {
     return field.hasError('email') && field.touched;
   }
 
+  get passwordInvalid(): boolean {
+    const field = this.form.get('password');
+    return field.hasError('required') && field.touched;
+  }
+
   submitForm() {
     if (this.form.valid) {
       this.executeAuth.emit(this.form);

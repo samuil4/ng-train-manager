@@ -19,10 +19,17 @@
       <input type="password"
         placeholder="Enter password"
         formControlName="password" >
+        <div *ngIf="passwordInvalid">
+          Password is required!
+        </div>
     </div>
 
     <div>
-      <button type="submit">Submit</button>
+      <ng-content select=".error"></ng-content>
+    </div>
+
+    <div>
+      <ng-content select="button[type=submit]"></ng-content>
     </div>
   </form>
 </div>
