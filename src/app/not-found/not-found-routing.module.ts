@@ -1,31 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { SimpleLayoutComponent } from '../containers/simple-layout/simple-layout.component';
 
-export const ROUTES: Routes = [
+const routes: Routes = [
   {
-    path: 'auth',
+    path: '404',
     component: SimpleLayoutComponent,
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'login',
-      },
-      {
-        path: 'login',
-        loadChildren: './login/login.module#LoginModule',
-      },
-      {
-        path: 'register',
-        loadChildren: './register/register.module#RegisterModule',
+        component: NotFoundComponent,
       },
     ],
+  },
+
+  {
+    path: '**',
+    redirectTo: '/404',
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthRoutingModule {}
+export class NotFoundRoutingModule {}
