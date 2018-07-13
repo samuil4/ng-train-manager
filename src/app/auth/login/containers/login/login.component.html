@@ -1,5 +1,11 @@
 <div>
   <app-auth-form (executeAuth)="initiateLogin($event)">
     <h1>Login</h1>
+    <button type="submit">
+      <span class="inner">
+        Login
+      </span>  
+    </button>
+    <div class="general-error">{{errorMessage}}</div>
   </app-auth-form>
 </div>

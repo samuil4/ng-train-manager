@@ -13,7 +13,8 @@
     "lib": ["es2017", "dom"],
     "paths": {
       "@app/auth-shared/*": ["./src/app/auth/shared/*"],
-      "@env": ["./src/environments/environment.ts"]
+      "@env": ["./src/environments/environment.ts"],
+      "@store": ["./src/app/store.ts"]
     }
   }
 }

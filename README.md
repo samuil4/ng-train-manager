@@ -129,3 +129,28 @@ service cloud.firestore {
 - `yarn add @firebase/util`
 - `yarn add @firebase/database-types`
 - `yarn add @firebase/auth-types`
+
+# Homework for 18.07.2018
+
+1.  Setup a new project `ng new MyProjectName --routing`
+2.  Create Aliases `@env` to environment.ts
+3.  Create 2 modules home and auth
+4.  Auth module must include 2 sub-modules Login / Register
+5.  Setup router to open
+    5.1 / -> home
+    5.2 auth -> login
+    5.3 auth/register -> register
+6.  Auth login and register container components must use one shared form
+7.  Configure Firebase
+    7.1 Store config to environment.ts -> see current project
+8.  Include AngularFire modules to app.module and initialize with store config in environment.ts
+9.  Create Auth service that uses firebase
+10. Initiare login / register actions - HERE 18.07.2018
+11. Display user email in the home component - for testing only
+12. Create some kind of store implementation to store and manage states
+    12.1 User
+    12.2 Trains
+    12.3 Wagons
+    12.4 Tickets
+13. Create interfaces / classes / domain models for the data
+14. Create GUARDS that prevent home form opening when not logged

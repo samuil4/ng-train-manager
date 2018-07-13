@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<div>
+  <!-- user is Observable that's why we use async to subscribe to data changes in the DOM -->
+  <p> {{ (user | async)?.email}}</p>
+  <router-outlet></router-outlet>
+
+</div>

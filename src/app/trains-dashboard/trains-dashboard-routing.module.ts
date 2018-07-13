@@ -8,20 +8,20 @@ import { CreateTrainComponent } from './containers/create-train/create-train.com
 const routes: Routes = [
   {
     path: '',
-    component: ViewAllTrainsComponent
+    component: ViewAllTrainsComponent,
   },
   {
     path: 'create',
-    component: CreateTrainComponent
+    component: CreateTrainComponent,
   },
   {
     path: ':id',
-    component: ViewTrainComponent
-  }
+    component: ViewTrainComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class TrainsDashboardRoutingModule {}

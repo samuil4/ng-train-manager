@@ -19,16 +19,16 @@ export const routes: Routes = [
         pathMatch: 'full',
         loadChildren: './home/home.module#HomeModule',
       },
-      {
-        path: 'trains',
-        loadChildren:
-          './trains-dashboard/trains-dashboard.module#TrainsDashboardModule',
-      },
-      {
-        path: 'wagons',
-        loadChildren: './wagons/wagons.module#WagonsModule',
-      },
     ],
+  },
+  {
+    path: 'trains',
+    loadChildren:
+      './trains-dashboard/trains-dashboard.module#TrainsDashboardModule',
+  },
+  {
+    path: 'wagons',
+    loadChildren: './wagons/wagons.module#WagonsModule',
   },
 ];
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AuthService } from '@app/auth-shared/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,11 +9,22 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  errorMessage: string;
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
-  initiateLogin(form: FormGroup) {
+  async initiateLogin(form: FormGroup) {
     console.log(form);
+    const { email, password } = form.value;
+
+    try {
+      await this.authService.logInUser(email, password);
+      // Go to logged in state
+      this.router.navigate(['/']);
+    } catch (error) {
+      // Catcfh error and handle error message
+      this.errorMessage = error.message;
+    }
   }
 }

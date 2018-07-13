@@ -8,6 +8,7 @@ import { FullLayoutComponent } from './containers/full-layout/full-layout.compon
 import { SimpleLayoutComponent } from './containers/simple-layout/simple-layout.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
+import { Store } from './store';
 
 import { AuthModule } from './auth/auth.module';
 import { NotFoundModule } from './not-found/not-found.module';
@@ -21,7 +22,7 @@ import { NotFoundModule } from './not-found/not-found.module';
     AppFooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, AuthModule, NotFoundModule],
-  providers: [],
+  providers: [Store],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

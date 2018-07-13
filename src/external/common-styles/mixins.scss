@@ -19,7 +19,7 @@
     }
   } @else {
     $columns: 12;
-    grid-template-columns: repeat(auto-fit, minmax(100/$columns * 1em, 1fr) );
+    // grid-template-columns: repeat(auto-fit, minmax(100/$columns * 1em, 1fr) );
   }
 }
 

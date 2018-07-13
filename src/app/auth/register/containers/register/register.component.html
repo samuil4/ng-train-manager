@@ -1,7 +1,11 @@
 <p>
   <app-auth-form (executeAuth)="initiateRegister($event)">
     <h1>Register</h1>
-    <button type="submit">Register Account</button>
-    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <button type="submit">
+      <span class="inner">
+        Register Account
+      </span>
+    </button>
+    <div class="general-error" *ngIf="errorMessage">{{ errorMessage }}</div>
   </app-auth-form>
 </p>
