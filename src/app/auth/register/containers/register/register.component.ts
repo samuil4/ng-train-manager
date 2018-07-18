@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { AuthService } from '../../../shared/services/auth/auth.service';
+import { AuthService } from '@app/auth-shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',

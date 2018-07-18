@@ -14,7 +14,8 @@
     "paths": {
       "@app/auth-shared/*": ["./src/app/auth/shared/*"],
       "@env": ["./src/environments/environment.ts"],
-      "@store": ["./src/app/store.ts"]
+      "@store": ["./src/app/store.ts"],
+      "@shared/*": ["./src/app/shared/*"]
     }
   }
 }

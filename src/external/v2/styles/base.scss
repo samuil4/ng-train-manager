@@ -2,15 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #4c4c4c;
-  font-family: 'Quicksand', sans-serif;
+  color: $base-font-color;
+  font-family: inherit;
   font-size: inherit;
 }
 
-html,
+html {
+  font-size: 100%;
+}
+
 body {
-  font-size: 17px;
-  line-height: 1.3;
+  font-family: 'Quicksand';
 }
 
 $heading-size: 2.8rem;
@@ -34,8 +36,12 @@ textarea {
   &::-ms-clear {
     display: none;
   }
-  border: 0;
-  box-shadow: 0;
+}
+
+input[type='hidden'] {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 textarea {
@@ -45,7 +51,8 @@ textarea {
   overflow-y: auto;
 }
 
-button {
+button,
+.button {
   cursor: pointer;
   outline: none;
   border: none;

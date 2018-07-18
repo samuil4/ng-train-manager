@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Train } from '../../models/train';
+import { Train } from '@shared/models/train';
 
 @Component({
   selector: 'app-confirmed-trains',

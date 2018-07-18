@@ -1,0 +1,49 @@
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+// Store
+import { Store } from '@store';
+
+// Other services
+import { Observable } from 'rxjs';
+
+// Models / Interfaces
+import { Train } from '@shared/models/train';
+import { tap } from 'rxjs/operators';
+import { AuthService } from '@app/auth-shared/services/auth/auth.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TrainsService {
+  trains: Observable<Train[]>;
+
+  constructor(
+    private store: Store,
+    private afDb: AngularFireDatabase,
+    private authService: AuthService,
+  ) {
+    // valueChanges returns an Observable
+    // https://github.com/angular/angularfire2/blob/master/docs/rtdb/lists.md
+    this.trains = this.afDb
+      .list<Train>('trains')
+      .valueChanges()
+      .pipe(
+        tap((nextValue) => {
+          this.store.set('trains', nextValue);
+        }),
+      );
+  }
+
+  get uid() {
+    return this.authService.user.uid;
+  }
+
+  addTrain(train: Train) {
+    return this.afDb.list(`trains`).push(train);
+  }
+
+  removeTrain(key: string) {
+    return this.afDb.list(`trains`).remove(key);
+  }
+}

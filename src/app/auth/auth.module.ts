@@ -8,10 +8,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { FIREBASE_CONFIG } from '../../environments/environment';
+import { FIREBASE_CONFIG } from '@env';
 
 // Shared
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '@app/auth-shared/shared.module';
 
 @NgModule({
   imports: [

@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Output,
+  Input,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { User } from '../../auth/models/user.interface';
 
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./app-header.component.scss'],
 })
-export class AppHeaderComponent implements OnInit {
-  show = false;
-  constructor() {}
+export class AppHeaderComponent {
+  @Output() logout = new EventEmitter<any>();
+  @Input() user: User;
 
-  ngOnInit() {}
-
-  toggleCollapse() {
-    this.show = !this.show;
+  logoutUser() {
+    this.logout.emit();
   }
 }

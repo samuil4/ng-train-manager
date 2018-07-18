@@ -1,16 +1,20 @@
-::-webkit-input-placeholder {
-  color: rgba(76, 76, 76, 0.62);
+::-webkit-input-placeholder,
+.input-placeholder {
+  color: $input-placeholder-color;
 }
 
 .input-field {
   display: flex;
   align-items: center;
-  border: 1px solid rgba(27, 163, 156, 0.5);
+  border: 1px solid $base-form-element-color;
   border-top: none;
   border-right: none;
   padding: 9px 10px;
-  margin-bottom: 30px;
-  input[type='text'] {
+  margin-bottom: 20px;
+  transition: 300ms all ease-in;
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
     border: none;
     background-color: transparent;
   }
@@ -18,38 +22,44 @@
     font-weight: 500;
     text-transform: uppercase;
     padding-right: 10px;
-    color: rgba(76, 76, 76, 0.62);
+    color: $label-color;
   }
   &:not(.dropdown) .label {
     flex: 1 0 auto;
     justify-content: center;
   }
-  .fa {
-    padding-right: 6px;
-  }
   &:hover,
   &:active,
   &:focus {
-    border-color: rgba(27, 163, 156, 0.5);
-    box-shadow: 3px 2px 7px rgba(18, 125, 104, 0.21);
+    border-color: $base-form-element-color;
+    box-shadow: 3px 2px 7px $box-shadow-color;
     .label,
     input {
-      color: #4c4c4c;
+      color: $base-font-color;
     }
   }
+}
 
-  &.error {
+.entered-item {
+  background-color: rgba(18, 125, 104, 0.3);
+  padding: 5px 9px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+}
+
+.error {
+  .input-field {
     position: relative;
-    border-color: rgba(163, 52, 27, 0.5);
-    .error-message {
-      transition: 300ms all ease-in;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      margin-top: 5px;
-      span {
-        color: rgba(163, 52, 27, 0.5);
-      }
+    border-color: $error-field-element-color;
+  }
+  .error-message {
+    transition: 300ms all ease-in;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    span {
+      color: $error-message-color;
     }
   }
 }
@@ -91,6 +101,6 @@
     width: 100%;
   }
   &.checked .inner {
-    background-color: rgba(27, 163, 156, 0.5);
+    background-color: $base-form-element-color;
   }
 }

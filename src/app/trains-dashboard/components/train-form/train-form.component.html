@@ -1,0 +1,42 @@
+<div class="grid css-grid">
+  <div class="col span-2"></div>
+  <form [formGroup]="form" (ngSubmit)="createTrain()" class="col span-8">
+
+    <div [ngClass]="{error: nameInvalid}">
+      <div class="input-field">
+        <label class="label" for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter train name" formControlName="name">
+        <div *ngIf="nameInvalid" class="error-message">
+          <span>Name is invalid!</span>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="{error: departureDestinationInvalid}">
+      <div class="input-field">
+        <label class="label" for="departureDestination">departureDestination</label>
+        <input type="text" id="departureDestination" placeholder="Enter departure destination" formControlName="departureDestination">
+        <div *ngIf="departureDestinationInvalid" class="error-message">
+          <span>Departure destination is invalid!</span>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="{error: arrivalDestinationInvalid}">
+      <div class="input-field">
+        <label class="label" for="arrivalDestination">arrivalDestination</label>
+        <input type="text" id="arrivalDestination" placeholder="Enter arrival destination" formControlName="arrivalDestination">
+        <div *ngIf="arrivalDestinationInvalid" class="error-message">
+          <span>Arrival destination is invalid!</span>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">
+      <span class="inner">
+        Create
+      </span>
+    </button>
+
+  </form>
+</div>

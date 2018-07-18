@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthFormComponent } from './auth-form.component';
+import { AuthFormComponent } from '@app/auth-shared/components/auth-form/auth-form.component';
 
 describe('AuthFormComponent', () => {
   let component: AuthFormComponent;
@@ -8,9 +8,8 @@ describe('AuthFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthFormComponent ]
-    })
-    .compileComponents();
+      declarations: [AuthFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

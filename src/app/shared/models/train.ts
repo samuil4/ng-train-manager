@@ -1,4 +1,4 @@
-import { Wagon } from './wagon';
+import { Wagons } from '@shared/models/wagons';
 
 export interface Train {
   departureDestination: string;
@@ -10,5 +10,9 @@ export interface Train {
   departureTime: number;
   arrivalTime: number;
   confirmed: boolean;
-  wagons: Wagon[] | null;
+  wagons: Wagons | null;
+
+  // Firebase related
+  $key: string;
+  $exist: () => boolean;
 }

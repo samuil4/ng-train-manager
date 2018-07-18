@@ -1,4 +1,6 @@
-button {
+button,
+.button {
+  display: inline-block;
   position: relative;
   padding: 5px 5px;
   border: 1px solid rgba(27, 163, 156, 0.5);
@@ -7,12 +9,17 @@ button {
   background-color: #fff;
   .inner {
     display: inline-block;
-    padding: 10px 10px;
+    padding: 5px 5px;
     transition: 200ms all ease-in-out;
-    &:active, &:hover {
+    &:active,
+    &:hover {
       color: #fff;
       transition: 200ms all ease-in-out;
       background-color: rgba(27, 163, 156, 0.5);
     }
   }
+}
+
+.button {
+  text-decoration: none;
 }

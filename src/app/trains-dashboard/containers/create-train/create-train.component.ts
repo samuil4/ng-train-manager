@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Train } from '@shared/models/train';
+import { Router } from '@angular/router';
+import { TrainsService } from '@shared/services/trains.service';
 
 @Component({
   selector: 'app-create-train',
   templateUrl: './create-train.component.html',
-  styleUrls: ['./create-train.component.scss']
+  styleUrls: ['./create-train.component.scss'],
 })
-export class CreateTrainComponent implements OnInit {
+export class CreateTrainComponent {
+  constructor(private router: Router, private trainsService: TrainsService) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  async createNewTrain(event: Train) {
+    console.log(event);
+    await this.trainsService.addTrain(event);
+    this.goBack();
   }
 
+  goBack() {
+    this.router.navigate(['trains']);
+  }
 }

@@ -1,4 +1,4 @@
-import { SharedModule } from './shared.module';
+import { SharedModule } from '@app/auth-shared/shared.module';
 
 describe('SharedModule', () => {
   let sharedModule: SharedModule;

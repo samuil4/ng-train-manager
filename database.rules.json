@@ -1,6 +1,8 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "trains": {
+      ".read": "auth.uid !== null",
+      ".write": "auth.uid !== null"
+    }
   }
 }

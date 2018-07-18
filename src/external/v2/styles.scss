@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'styles/mixins';
+@import 'styles/animations';
+
+.sq {
+  font-family: 'Quicksand';
+
+  //Base styles
+  @import 'styles/colors';
+  @import 'styles/base';
+  @import 'styles/form-elements';
+  @import 'styles/grid';
+  @import 'styles/button';
+
+  //Overwrites - should always be last
+  @import 'styles/utilities';
+}

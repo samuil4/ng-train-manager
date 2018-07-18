@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Train } from '../../models/train';
+import { Train } from '@shared/models/train';
 
 import { TrainDashboardService } from '../../train-dashboard.service';
 

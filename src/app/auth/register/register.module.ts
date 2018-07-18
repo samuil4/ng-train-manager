@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@app/auth-shared/shared.module';
 import { RegisterComponent } from './containers/register/register.component';
 
 const ROUTES: Routes = [

@@ -1,6 +1,5 @@
-<div>
-  <!-- user is Observable that's why we use async to subscribe to data changes in the DOM -->
-  <p> {{ (user | async)?.email}}</p>
+<div class="sq">
+  <!-- app-header componenet will only be checked for changes comming from the Input -->
+  <app-header (logout)="executeLogout()" [user]="user | async"></app-header>
   <router-outlet></router-outlet>
-
 </div>

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SimpleLayoutComponent } from '../containers/simple-layout/simple-layout.component';
+import { LoggedInGuard } from '@app/auth-shared/guards/logged-in.guard';
 
 export const ROUTES: Routes = [
   {
     path: 'auth',
     component: SimpleLayoutComponent,
+    canActivate: [LoggedInGuard],
     children: [
       {
         path: '',
