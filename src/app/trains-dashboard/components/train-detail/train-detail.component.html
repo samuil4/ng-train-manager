@@ -1,44 +1,27 @@
-<div class="row">
-  <div class="column">
-    {{ train.id }}
-  </div>
+<div class="row" [class.green]="train.confirmed">
   <div class="column">
     {{ train.name }}
   </div>
-  <div class="column" [class.red]="train.confirmed">
-    <span *ngIf="!editing">
+  <div class="column">
+    <span>
       {{ train.departureDestination | uppercase }}
     </span>
-    <span *ngIf="editing">
-      
-      <input type="text" 
-      #departure    
-      [value]="train.departureDestination"
-      (input)="updateOrigin(departure.value)">
-    </span>
   </div>
   <div class="column">
-    <span *ngIf="!editing">  
+    <span>  
       {{ train.arrivalDestination | uppercase }}
     </span>
-    <span *ngIf="editing">    
-      <input type="text" 
-        #arrival
-        [value]="train.arrivalDestination"
-        (input)="updateDestination(arrival.value)" >
-    </span>
   </div>
   <div class="column">
-    {{ train.departureTime | date: 'HH:mm dMMMy' }}
+    {{ train.departureDate | date: 'HH:mm dMMMy' }}
   </div>
   <div class="column">
-    {{ train.arrivalTime | date: 'HH:mm dMMMy' }}
+    {{ train.arrivalDate | date: 'HH:mm dMMMy' }}
   </div>
   <div class="column">
     {{ train.wagons?.length || 0 }}
   </div>
   <div class="column actions">
-    <button (click)="toggleEdit()" class="button-small">{{ editing ? 'Done' : 'Edit' }}</button>
     <button (click)="deleteTrain()" class=" button-small button-outline">Delete</button>
     <button (click)="viewTrain()" class=" button-small button-outline">View</button>
   </div>

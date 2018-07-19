@@ -8,15 +8,16 @@ import { Store } from '@store';
 import { Observable } from 'rxjs';
 
 // Models / Interfaces
-import { Train } from '@shared/models/train';
-import { tap } from 'rxjs/operators';
+import { ITrain } from '@shared/models/train.interface';
+import { TrainCollection } from '@shared/models/train.collection';
+import { tap, map } from 'rxjs/operators';
 import { AuthService } from '@app/auth-shared/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrainsService {
-  trains: Observable<Train[]>;
+  trains: Observable<ITrain[]>;
 
   constructor(
     private store: Store,
@@ -26,11 +27,19 @@ export class TrainsService {
     // valueChanges returns an Observable
     // https://github.com/angular/angularfire2/blob/master/docs/rtdb/lists.md
     this.trains = this.afDb
-      .list<Train>('trains')
-      .valueChanges()
+      .list('trains')
+      .snapshotChanges()
       .pipe(
-        tap((nextValue) => {
-          this.store.set('trains', nextValue);
+        map(next => {
+          return next.map(item => {
+            return {
+              $key: item.key,
+              ...item.payload.val(),
+            };
+          });
+        }),
+        tap(nextValue => {
+          this.store.set('trains', new TrainCollection(nextValue));
         }),
       );
   }
@@ -39,7 +48,7 @@ export class TrainsService {
     return this.authService.user.uid;
   }
 
-  addTrain(train: Train) {
+  addTrain(train: ITrain) {
     return this.afDb.list(`trains`).push(train);
   }
 

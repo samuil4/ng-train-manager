@@ -31,6 +31,19 @@
         </div>
       </div>
     </div>
+    <div [ngClass]="{error: arrivalDatenvalid}">
+      <div class="input-field">
+        <label class="label" for="arrivalDate">arrivalTime</label>
+        <ng-datepicker id="arrivalDate" formControlName="arrivalDate"></ng-datepicker>
+      </div>
+    </div>
+    <div [ngClass]="{error: departureDateInvalid}">
+      <div class="input-field">
+        <label class="label" for="departureDate">departureTime</label>
+        <ng-datepicker id="departureDate" formControlName="departureDate"></ng-datepicker>
+      </div>
+    </div>
+      
 
     <button type="submit">
       <span class="inner">

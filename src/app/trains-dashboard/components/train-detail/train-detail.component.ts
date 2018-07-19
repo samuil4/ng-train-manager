@@ -6,9 +6,9 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Train } from '@shared/models/train';
 
-import { TrainDashboardService } from '../../train-dashboard.service';
+import { ITrain } from '@shared/models/train.interface';
+import { TrainsService } from '@shared/services/trains.service';
 
 @Component({
   selector: 'app-train-detail',
@@ -16,16 +16,15 @@ import { TrainDashboardService } from '../../train-dashboard.service';
   styleUrls: ['./train-detail.component.scss'],
 })
 export class TrainDetailComponent implements OnChanges {
-  @Input() train: Train;
-  @Output() edit: EventEmitter<Train> = new EventEmitter();
-  @Output() delete: EventEmitter<Train> = new EventEmitter();
-  @Output() view: EventEmitter<Train> = new EventEmitter();
+  @Input() train: ITrain;
+  @Output() delete: EventEmitter<ITrain> = new EventEmitter();
+  @Output() view: EventEmitter<ITrain> = new EventEmitter();
   editing = false;
-  constructor(private service: TrainDashboardService) {}
+  constructor(private service: TrainsService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
-    this.train = Object.assign({}, changes.train.currentValue);
+    this.train = { ...changes.train.currentValue };
   }
 
   deleteTrain() {
@@ -33,10 +32,6 @@ export class TrainDetailComponent implements OnChanges {
   }
 
   toggleEdit() {
-    if (this.editing) {
-      this.edit.emit(this.train);
-    }
-
     this.editing = !this.editing;
   }
 

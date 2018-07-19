@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Train } from '@shared/models/train';
+import { ITrain } from '@shared/models/train.interface';
 
 @Component({
   selector: 'app-confirmed-trains',
@@ -7,6 +7,6 @@ import { Train } from '@shared/models/train';
   styleUrls: ['./confirmed-trains.component.css'],
 })
 export class ConfirmedTrainsComponent {
-  @Input() trainsList: Train[];
+  @Input() trainsList: ITrain[];
   constructor() {}
 }

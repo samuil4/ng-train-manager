@@ -10,6 +10,10 @@
     <hr> {{ trains | async | json }}
     <div *ngIf="trains | async as trains; else loading;">
       <!-- loop the trains and display each train details -->
+      <app-train-detail 
+        *ngFor="let train of trains.models" 
+        (delete)="executeDelete($event)"
+        [train]="train"></app-train-detail>
 
       <div *ngIf="!trains.length">
         No trains are currently scheduled.

@@ -4,8 +4,9 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { Train } from '@shared/models/train';
+import { ITrain } from '@shared/models/train.interface';
 import { FormBuilder, Validators } from '@angular/forms';
+import { TrainModel } from '@shared/models/train.model';
 
 @Component({
   selector: 'app-train-form',
@@ -14,23 +15,31 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./train-form.component.css'],
 })
 export class TrainFormComponent {
-  @Output() create = new EventEmitter<Train>();
+  @Output() create = new EventEmitter<ITrain>();
+  defaultTrainValues = new TrainModel();
 
   form = this.fb.group({
-    name: ['', Validators.required],
-    departureDestination: ['', Validators.required],
-    arrivalDestination: ['', Validators.required],
-    departureTime: [Date.now(), Validators.required],
-    arrivalTime: [Date.now(), Validators.required],
+    name: [this.defaultTrainValues.name, Validators.required],
+    departureDestination: [
+      this.defaultTrainValues.departureDestination,
+      Validators.required,
+    ],
+    arrivalDestination: [
+      this.defaultTrainValues.arrivalDestination,
+      Validators.required,
+    ],
+    departureDate: [this.defaultTrainValues.departureDate, Validators.required],
+    arrivalDate: [this.defaultTrainValues.arrivalDate, Validators.required],
     confirmed: [false, Validators.required],
   });
 
   constructor(private fb: FormBuilder) {}
 
   createTrain() {
-    console.log(this.form);
     if (this.form.valid) {
-      this.create.emit(this.form.value);
+      const newTrain = new TrainModel();
+      newTrain.value = this.form.value;
+      this.create.emit(newTrain);
     }
   }
 
@@ -46,6 +55,16 @@ export class TrainFormComponent {
 
   get arrivalDestinationInvalid(): boolean {
     const field = this.form.get('arrivalDestination');
+    return field.hasError('required') && field.touched;
+  }
+
+  get arrivalDateInvalid(): boolean {
+    const field = this.form.get('arrivalDate');
+    return field.hasError('required') && field.touched;
+  }
+
+  get departureDateInvalid(): boolean {
+    const field = this.form.get('departureDate');
     return field.hasError('required') && field.touched;
   }
 }

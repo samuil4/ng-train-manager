@@ -2,7 +2,8 @@
   <div class="col span-1"></div>
   <nav class="col span-10">
     <a class="navbar-brand" routerLink="/home">Ng Train Manager</a>
-    <a href="javascript:;" *ngIf="user?.authenticated" (click)="logoutUser()">Logout</a>
+    <span *ngIf="user?.authenticated"> {{user?.email}} </span>
+    <a href="javascript:;" class="button" *ngIf="user?.authenticated" (click)="logoutUser()">Logout</a>
   </nav>
   <div class="col span-1"></div>
 </div>
