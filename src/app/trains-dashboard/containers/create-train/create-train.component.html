@@ -1,4 +1,6 @@
 <div>
   <h3>Create a new train</h3>
-  <app-train-form (create)="createNewTrain($event)"></app-train-form>
+  <app-train-form (action)="createNewTrain($event)">
+    <span class="button-text">Create</span>
+  </app-train-form>
 </div>

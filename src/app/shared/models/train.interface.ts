@@ -12,5 +12,5 @@ export interface ITrain {
   wagons?: Wagons | null;
 
   // Firebase related
-  $key: string;
+  $key?: string;
 }

@@ -19,9 +19,14 @@ export class TrainModel implements ITrainModel {
 
   constructor(train?: ITrain) {
     if (train) {
+      this.departureTime = train.departureTime;
+      this.arrivalTime = train.arrivalTime;
       this.departureDate = new Date(train.departureTime || this.departureTime);
-      this.arrivalDate = new Date(train.arrivalTime || this.departureTime);
+      this.arrivalDate = new Date(train.arrivalTime || this.arrivalTime);
       this.$key = train.$key || '';
+      this.name = train.name;
+      this.departureDestination = train.departureDestination;
+      this.arrivalDestination = train.arrivalDestination;
     }
   }
 
@@ -39,14 +44,20 @@ export class TrainModel implements ITrainModel {
   }
 
   toJSON(): ITrain {
-    return {
+    const data: ITrain = {
       name: this.name,
       departureDestination: this.departureDestination,
       arrivalDestination: this.arrivalDestination,
       departureTime: this.departureDate.getTime(),
       arrivalTime: this.arrivalDate.getTime(),
       confirmed: this.confirmed,
-      $key: this.$key,
     };
+
+    // Do not assign $key as it is not needed
+    // if (this.$key) {
+    //   data.$key = this.$key;
+    // }
+
+    return data;
   }
 }

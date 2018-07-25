@@ -1,27 +1,42 @@
-<div class="row" [class.green]="train.confirmed">
-  <div class="column">
+<div class="grid css-grid row" [class.green]="train.confirmed">
+  <div class="col span-2">
+    <div>
+      <b>Name</b>
+    </div>
     {{ train.name }}
   </div>
-  <div class="column">
+  <div class="col span-3">
+    <div>
+      <b>Departure</b>
+    </div>
     <span>
       {{ train.departureDestination | uppercase }}
     </span>
+    <div>
+      <b>Departure time</b>
+    </div>
+    {{ train.departureDate | date: 'HH:mm dMMMy' }}
   </div>
-  <div class="column">
+  <div class="col span-3">
+    <div>
+      <b>Arrival</b>
+    </div>
     <span>  
       {{ train.arrivalDestination | uppercase }}
     </span>
-  </div>
-  <div class="column">
-    {{ train.departureDate | date: 'HH:mm dMMMy' }}
-  </div>
-  <div class="column">
+    <div>
+      <b>Arrival time</b>
+    </div>
     {{ train.arrivalDate | date: 'HH:mm dMMMy' }}
   </div>
-  <div class="column">
+
+  <div class="col span-1">
+    <div>
+      <b>Wagons</b>
+    </div>
     {{ train.wagons?.length || 0 }}
   </div>
-  <div class="column actions">
+  <div class="col span-3 actions">
     <button (click)="deleteTrain()" class=" button-small button-outline">Delete</button>
     <button (click)="viewTrain()" class=" button-small button-outline">View</button>
   </div>

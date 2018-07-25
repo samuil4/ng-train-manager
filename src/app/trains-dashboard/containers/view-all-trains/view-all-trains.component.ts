@@ -6,6 +6,7 @@ import { TrainsService } from '@shared/services/trains.service';
 import { ITrain } from '@shared/models/train.interface';
 import { Store } from '@store';
 import { TrainModel } from '@shared/models/train.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-all-trains',
   templateUrl: './view-all-trains.component.html',
@@ -15,7 +16,11 @@ export class ViewAllTrainsComponent implements OnInit, OnDestroy {
   trains: Observable<ITrain[]>;
   subscription: Subscription;
 
-  constructor(private trainsService: TrainsService, private store: Store) {}
+  constructor(
+    private trainsService: TrainsService,
+    private store: Store,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.trains = this.store.select<ITrain[]>('trains');
@@ -28,7 +33,11 @@ export class ViewAllTrainsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  executeDelete($event: TrainModel) {
-    this.trainsService.removeTrain($event.$key);
+  executeDelete(train: TrainModel) {
+    this.trainsService.removeTrain(train.$key);
+  }
+
+  executeView(train: TrainModel) {
+    this.router.navigate(['trains', train.$key]);
   }
 }

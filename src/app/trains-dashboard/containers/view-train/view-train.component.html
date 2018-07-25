@@ -1,3 +1,8 @@
-<p>
-  view-train works!
-</p>
+<div>
+  <h3>Edit train</h3>
+  <app-train-form
+    [train]="train" 
+    (action)="editTrain($event)">
+    <span class="button-text">Edit</span>
+  </app-train-form>
+</div>

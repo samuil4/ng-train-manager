@@ -52,6 +52,16 @@ export class TrainsService {
     return this.afDb.list(`trains`).push(train);
   }
 
+  getTrain($key: string) {
+    return this.afDb.list(`trains`, ref => {
+      return ref.child($key);
+    });
+  }
+
+  editTrain($key: string, train: ITrain) {
+    return this.afDb.list(`trains`).update($key, train);
+  }
+
   removeTrain(key: string) {
     return this.afDb.list(`trains`).remove(key);
   }

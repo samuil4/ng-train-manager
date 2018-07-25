@@ -13,6 +13,7 @@
       <app-train-detail 
         *ngFor="let train of trains.models" 
         (delete)="executeDelete($event)"
+        (view)="executeView($event)"
         [train]="train"></app-train-detail>
 
       <div *ngIf="!trains.length">

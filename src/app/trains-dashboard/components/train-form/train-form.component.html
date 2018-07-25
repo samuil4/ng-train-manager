@@ -1,6 +1,6 @@
 <div class="grid css-grid">
   <div class="col span-2"></div>
-  <form [formGroup]="form" (ngSubmit)="createTrain()" class="col span-8">
+  <form [formGroup]="form" (ngSubmit)="executeActionTrain()" class="col span-8">
 
     <div [ngClass]="{error: nameInvalid}">
       <div class="input-field">
@@ -21,6 +21,12 @@
         </div>
       </div>
     </div>
+    <div [ngClass]="{error: departureDateInvalid}">
+      <div class="input-field">
+        <label class="label" for="departureDate">departureTime</label>
+        <ng-datepicker id="departureDate" formControlName="departureDate"></ng-datepicker>
+      </div>
+    </div>
 
     <div [ngClass]="{error: arrivalDestinationInvalid}">
       <div class="input-field">
@@ -37,17 +43,9 @@
         <ng-datepicker id="arrivalDate" formControlName="arrivalDate"></ng-datepicker>
       </div>
     </div>
-    <div [ngClass]="{error: departureDateInvalid}">
-      <div class="input-field">
-        <label class="label" for="departureDate">departureTime</label>
-        <ng-datepicker id="departureDate" formControlName="departureDate"></ng-datepicker>
-      </div>
-    </div>
-      
-
     <button type="submit">
       <span class="inner">
-        Create
+        <ng-content select=".button-text"></ng-content>
       </span>
     </button>
 

@@ -12,4 +12,11 @@ export class Collection {
   get models(): any[] {
     return this.values;
   }
+
+  getModel(id: string): any {
+    // Filter returns [] ^_^
+    return this.values.filter(item => {
+      return item.$key === id;
+    })[0];
+  }
 }

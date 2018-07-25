@@ -3,6 +3,9 @@ import {
   ChangeDetectionStrategy,
   EventEmitter,
   Output,
+  Input,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { ITrain } from '@shared/models/train.interface';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -14,8 +17,9 @@ import { TrainModel } from '@shared/models/train.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./train-form.component.css'],
 })
-export class TrainFormComponent {
-  @Output() create = new EventEmitter<ITrain>();
+export class TrainFormComponent implements OnChanges {
+  @Output() action = new EventEmitter<ITrain>();
+  @Input() train: TrainModel;
   defaultTrainValues = new TrainModel();
 
   form = this.fb.group({
@@ -35,11 +39,22 @@ export class TrainFormComponent {
 
   constructor(private fb: FormBuilder) {}
 
-  createTrain() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.train.currentValue) {
+      // TO DO check if it works
+      this.form.patchValue(changes.train.currentValue);
+      console.log(changes.train.currentValue, this.form.value);
+    }
+  }
+
+  executeActionTrain() {
     if (this.form.valid) {
       const newTrain = new TrainModel();
       newTrain.value = this.form.value;
-      this.create.emit(newTrain);
+      if (this.train) {
+        newTrain.$key = this.train.$key;
+      }
+      this.action.emit(newTrain);
     }
   }
 

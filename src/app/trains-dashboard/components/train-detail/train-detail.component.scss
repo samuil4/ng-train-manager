@@ -8,4 +8,12 @@
 
 .actions {
   border-left: 1px solid gray;
+  text-align: center;
+  button {
+    margin: 0 5px;
+  }
+}
+
+.row {
+  border-bottom: 1px solid gray;
 }
