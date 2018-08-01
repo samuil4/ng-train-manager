@@ -1,3 +1,27 @@
-<p>
-  view-all-wagons works!
-</p>
+<div class="grid css-grid">
+  <div class="col span-1"></div>
+  <div class="col span-10">
+    <a href="javascript:;" class="button" routerLink="create">Add a wagon</a>
+  </div>
+</div>
+<div class="grid css-grid">
+  <div class="col span-1"></div>
+  <div class="col span-10">
+    <hr> {{ wagons | async | json }}
+    <div *ngIf="wagons | async as wagons; else loading;">
+      <!-- loop the trains and display each train details -->
+      <app-wagon-detail 
+        *ngFor="let wagon of wagons.models" 
+        (delete)="executeDelete($event)"
+        (view)="executeView($event)"
+        [wagon]="wagon"></app-wagon-detail>
+
+      <div *ngIf="!wagons.length">
+        No wagons set.
+      </div>
+    </div>
+    <ng-template #loading>
+      <div>Loading</div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="grid css-grid row">
+  <div class="col span-2">
+    <div>
+      <b>Name</b>
+    </div>
+    {{ wagon.name }}
+  </div>
+  <div class="col span-3">
+    <div>
+      <b>Type</b>
+    </div>
+    <span>
+      {{ wagon.type }}
+    </span>
+    <div>
+      <b>Number of seats</b>
+    </div>
+    {{ wagon.seatsCount }}
+  </div>
+  <div class="col span-3">
+    <div>
+      <b>Full</b>
+    </div>
+    <span>  
+      {{ wagon.isFull }}
+    </span>
+  </div>
+
+  <div class="col span-3 actions">
+    <button (click)="deleteWagon()" class=" button-small button-outline">Delete</button>
+    <button (click)="viewWagon()" class=" button-small button-outline">View</button>
+  </div>
+</div>

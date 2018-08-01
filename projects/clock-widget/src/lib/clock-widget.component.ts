@@ -36,8 +36,7 @@ export class ClockWidgetComponent implements OnInit, OnDestroy {
     this.clockObservable = interval(1000).pipe(
       map((tick) => {
         return new Date();
-      }),
-      share(),
+      })
     );
 
     this.subscription = this.clockObservable.subscribe((time) => {

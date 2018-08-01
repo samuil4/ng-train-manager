@@ -34,6 +34,12 @@
       ],
       "clock-widget/*": [
         "dist/clock-widget/*"
+      ],
+      "test-library": [
+        "dist/test-library"
+      ],
+      "test-library/*": [
+        "dist/test-library/*"
       ]
     }
   }
