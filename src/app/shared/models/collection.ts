@@ -4,7 +4,7 @@ export class Collection {
 
   constructor(rawCollection: any[], model) {
     this.model = model;
-    this.values = rawCollection.map(collectionItem => {
+    this.values = rawCollection.map((collectionItem) => {
       return new this.model(collectionItem);
     });
   }
@@ -15,7 +15,7 @@ export class Collection {
 
   getModel(id: string): any {
     // Filter returns [] ^_^
-    return this.values.filter(item => {
+    return this.values.filter((item) => {
       return item.$key === id;
     })[0];
   }
