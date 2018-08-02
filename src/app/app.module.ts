@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,6 +15,12 @@ import { AuthModule } from './auth/auth.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { AppNavComponent } from './components/app-nav/app-nav.component';
 
+const localeTranslationsEn = {
+  welcome: 'Welcome friend!',
+};
+
+registerLocaleData(localeTranslationsEn, 'en');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +31,7 @@ import { AppNavComponent } from './components/app-nav/app-nav.component';
     AppNavComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, AuthModule, NotFoundModule],
-  providers: [Store],
+  providers: [Store, { provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 <div class="sq">
   <!-- app-header componenet will only be checked for changes comming from the Input -->
   <app-header (logout)="executeLogout()" [user]="user | async"></app-header>
+  <!-- <h1 i18n>Welcome friend 2!</h1> -->
   <router-outlet></router-outlet>
 </div>

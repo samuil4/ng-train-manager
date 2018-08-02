@@ -22,7 +22,7 @@ export class WagonDetailComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
-    this.wagon = { ...changes.Wagon.currentValue };
+    this.wagon = { ...changes.wagon.currentValue };
   }
 
   deleteWagon() {

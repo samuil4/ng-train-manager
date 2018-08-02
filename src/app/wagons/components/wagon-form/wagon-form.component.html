@@ -1,0 +1,45 @@
+<div class="grid css-grid">
+  <div class="col span-2"></div>
+  <form [formGroup]="form" (ngSubmit)="executeActionWagon()" class="col span-8">
+
+    <div [ngClass]="{error: nameInvalid}">
+      <div class="input-field">
+        <label class="label" for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter wagon name" formControlName="name">
+        <div *ngIf="nameInvalid" class="error-message">
+          <span>Name is invalid!</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="input-field">
+        <label class="label" for="type">Type</label>
+        <select id="type" formControlName="type">
+          <option *ngFor="let option of seatTypes" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="!wagon">
+      <div class="input-field">
+        <label class="label">Row</label>
+        <input type="number" id="row" placeholder="Enter row count"  
+          formControlName="rowCount" min="10" max="50">
+      </div>
+
+      <div class="input-field">
+        <label class="label">Column</label>
+        <input type="number" id="column" placeholder="Enter column count"  
+          formControlName="columnCount" min="2" max="6">
+      </div>
+    </div>
+    
+    <button type="submit">
+      <span class="inner">
+        <ng-content select=".button-text"></ng-content>
+      </span>
+    </button>
+
+  </form>
+</div>

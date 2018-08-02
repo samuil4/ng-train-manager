@@ -6,14 +6,17 @@ import { CreateWagonComponent } from './containers/create-wagon/create-wagon.com
 import { ViewWagonComponent } from './containers/view-wagon/view-wagon.component';
 import { ViewAllWagonsComponent } from './containers/view-all-wagons/view-all-wagons.component';
 import { WagonDetailComponent } from './components/wagon-detail/wagon-detail.component';
+import { WagonFormComponent } from './components/wagon-form/wagon-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, WagonsRoutingModule],
+  imports: [CommonModule, WagonsRoutingModule, ReactiveFormsModule],
   declarations: [
     CreateWagonComponent,
     ViewWagonComponent,
     ViewAllWagonsComponent,
-    WagonDetailComponent
-  ]
+    WagonDetailComponent,
+    WagonFormComponent,
+  ],
 })
 export class WagonsModule {}

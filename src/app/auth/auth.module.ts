@@ -13,6 +13,10 @@ import { FIREBASE_CONFIG } from '@env';
 // Shared
 import { SharedModule } from '@app/auth-shared/shared.module';
 
+const initializeFireBaseModule = AngularFireModule.initializeApp(
+  FIREBASE_CONFIG,
+);
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +24,7 @@ import { SharedModule } from '@app/auth-shared/shared.module';
     // Custom modules
     SharedModule,
     // Firebase
-    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    initializeFireBaseModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
   ],

@@ -27,6 +27,23 @@ export class WagonModel implements IWagon {
     return !!this.seats.find(seat => seat.isReserved);
   }
 
+  createSeats(rowCount: number, columnCount: number) {
+    const columnLetters: string[] = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+    for (let currentRow = 1; currentRow <= rowCount; currentRow++) {
+      for (
+        let currentColumn = 1;
+        currentColumn <= columnCount;
+        currentColumn++
+      ) {
+        this.seats.push({
+          id: currentRow + columnLetters[currentColumn - 1],
+          isReserved: false,
+        });
+      }
+    }
+  }
+
   toJSON(): IWagon {
     const data: IWagon = {
       name: this.name,

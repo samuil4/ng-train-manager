@@ -1,3 +1,3 @@
-import { Wagon } from '@shared/models/wagon';
+import { IWagon } from '@shared/models/wagon.interface';
 
-export type Wagons = Wagon[];
+export type Wagons = IWagon[];
