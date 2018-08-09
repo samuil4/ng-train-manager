@@ -1,3 +1,7 @@
-<p>
-  view-wagon works!
-</p>
+<div>
+  <h3>View Wagon</h3>
+  <app-wagon-form (action)="updateWagon($event)" [wagon]="wagon">
+    <span class="button-text">Updte</span>
+    <app-wagon-seats [seats]="wagon?.seats"></app-wagon-seats>
+  </app-wagon-form>
+</div>

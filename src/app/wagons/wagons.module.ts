@@ -8,6 +8,7 @@ import { ViewAllWagonsComponent } from './containers/view-all-wagons/view-all-wa
 import { WagonDetailComponent } from './components/wagon-detail/wagon-detail.component';
 import { WagonFormComponent } from './components/wagon-form/wagon-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { WagonSeatsComponent } from './components/wagon-seats/wagon-seats.component';
 
 @NgModule({
   imports: [CommonModule, WagonsRoutingModule, ReactiveFormsModule],
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ViewAllWagonsComponent,
     WagonDetailComponent,
     WagonFormComponent,
+    WagonSeatsComponent,
   ],
 })
 export class WagonsModule {}
