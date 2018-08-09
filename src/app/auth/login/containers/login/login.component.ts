@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   async initiateLogin(form: FormGroup) {
-    console.log(form);
     const { email, password } = form.value;
 
     try {
