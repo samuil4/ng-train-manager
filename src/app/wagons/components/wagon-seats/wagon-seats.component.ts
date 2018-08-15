@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChanges,
+  OnChanges,
+} from '@angular/core';
 import { ISeat } from '@shared/models/seat.interface';
 
 @Component({
@@ -6,7 +12,7 @@ import { ISeat } from '@shared/models/seat.interface';
   templateUrl: './wagon-seats.component.html',
   styleUrls: ['./wagon-seats.component.scss'],
 })
-export class WagonSeatsComponent implements OnInit {
+export class WagonSeatsComponent implements OnInit, OnChanges {
   @Input()
   seats: ISeat[];
   columnsClass: string;
@@ -14,7 +20,7 @@ export class WagonSeatsComponent implements OnInit {
 
   ngOnInit() {}
 
-  ngOnchanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges) {
     if (changes.seats.currentValue) {
       const columnNumberLetters: string[] = ['A', 'B', 'C', 'D', 'E', 'F'];
       let maxColumn = 0;
@@ -26,7 +32,7 @@ export class WagonSeatsComponent implements OnInit {
         }
       });
 
-      this.columnsClass = `col seat span-${maxColumn}`;
+      this.columnsClass = `col seat span-${(12 / (maxColumn + 1)).toFixed(0)}`;
     }
   }
 }

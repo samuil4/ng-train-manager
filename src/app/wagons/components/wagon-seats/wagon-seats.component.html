@@ -1,5 +1,5 @@
-<div class="sq-grid css-grid">
-    <div *ngFor="let seat of seats" >
+<div class="grid css-grid">
+    <div [class]="columnsClass" *ngFor="let seat of seats" >
       {{seat.id}}
     </div>
 </div>

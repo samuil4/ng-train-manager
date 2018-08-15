@@ -11,6 +11,7 @@ import { SeatType, IWagon } from '@shared/models/wagon.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { WagonModel } from '@shared/models/wagon.model';
 
+const re = '^d*[02468]$';
 @Component({
   selector: 'app-wagon-form',
   templateUrl: './wagon-form.component.html',
@@ -18,8 +19,10 @@ import { WagonModel } from '@shared/models/wagon.model';
   styleUrls: ['./wagon-form.component.css'],
 })
 export class WagonFormComponent implements OnChanges {
-  @Output() action = new EventEmitter<IWagon>();
-  @Input() wagon: WagonModel;
+  @Output()
+  action = new EventEmitter<IWagon>();
+  @Input()
+  wagon: WagonModel;
   defaultWagonValues = new WagonModel();
 
   seatTypes: SeatType[] = ['business', 'economy'];
@@ -28,7 +31,15 @@ export class WagonFormComponent implements OnChanges {
     name: [this.defaultWagonValues.name, Validators.required],
     type: ['economy', Validators.required],
     rowCount: [10, Validators.required],
-    columnCount: [2, Validators.required],
+    columnCount: [
+      2,
+      [
+        Validators.required,
+        Validators.max(6),
+        Validators.min(2),
+        Validators.pattern(re),
+      ],
+    ],
   });
 
   constructor(private fb: FormBuilder) {}

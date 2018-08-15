@@ -31,7 +31,11 @@
       <div class="input-field">
         <label class="label">Column</label>
         <input type="number" id="column" placeholder="Enter column count"  
-          formControlName="columnCount" min="2" max="6">
+          formControlName="columnCount">
+          
+          <div *ngIf="form.controls['columnCount'].errors">
+            <span *ngIf="form.controls['columnCount'].errors.min">Min columns 2!</span>
+          </div>                  
       </div>
     </div>
 
