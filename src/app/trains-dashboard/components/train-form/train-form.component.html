@@ -43,11 +43,20 @@
         <ng-datepicker id="arrivalDate" formControlName="arrivalDate"></ng-datepicker>
       </div>
     </div>
-    <button type="submit">
-      <span class="inner">
-        <ng-content select=".button-text"></ng-content>
-      </span>
-    </button>
+
+    <sq-typeahead 
+      name="trainWagons"
+      formControlName="trainWagons"
+      [searchResults]="availableWagons"
+      (onUserInputEnd)="searchMethod($event)"
+      controlLabel="Wagons*"
+      [multiple]="true"
+      controlPlaceholder="Add or remove wagons from this train">
+    </sq-typeahead>
+
+    <sq-button>
+      <ng-content select=".button-text"></ng-content>
+    </sq-button>
 
   </form>
 </div>

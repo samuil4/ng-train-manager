@@ -6,10 +6,20 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { ITrain } from '@shared/models/train.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TrainModel } from '@shared/models/train.model';
+import { Wagons } from '@shared/models/wagons';
+import { Observable, Subscription } from 'rxjs';
+import { IWagon } from '@shared/models/wagon.interface';
+import { Store } from '@store';
+import { WagonService } from '@shared/services/wagon.service';
+import { take } from 'rxjs/operators';
+import { WagonCollection } from '@shared/models/wagon.collection';
+import { SearchResult } from '@sq-ui/ng-sq-ui';
 
 @Component({
   selector: 'app-train-form',
@@ -17,10 +27,16 @@ import { TrainModel } from '@shared/models/train.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./train-form.component.css'],
 })
-export class TrainFormComponent implements OnChanges {
-  @Output() action = new EventEmitter<ITrain>();
-  @Input() train: TrainModel;
+export class TrainFormComponent implements OnChanges, OnInit, OnDestroy {
+  @Output()
+  action = new EventEmitter<ITrain>();
+  @Input()
+  train: TrainModel;
   defaultTrainValues = new TrainModel();
+
+  availableWagons: SearchResult[];
+  wagons: Observable<WagonCollection>;
+  wagonsSubscription: Subscription;
 
   form = this.fb.group({
     name: [this.defaultTrainValues.name, Validators.required],
@@ -35,16 +51,39 @@ export class TrainFormComponent implements OnChanges {
     departureDate: [this.defaultTrainValues.departureDate, Validators.required],
     arrivalDate: [this.defaultTrainValues.arrivalDate, Validators.required],
     confirmed: [false, Validators.required],
+    trainWagons: [[], Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private wagonService: WagonService,
+    private store: Store,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.train.currentValue) {
-      // TO DO check if it works
       this.form.patchValue(changes.train.currentValue);
-      console.log(changes.train.currentValue, this.form.value);
     }
+  }
+
+  ngOnInit() {
+    this.wagons = this.store.select<WagonCollection>('wagons');
+    // Start data flow with subscription
+    this.wagonsSubscription = this.wagonService.wagons.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.wagonsSubscription.unsubscribe();
+  }
+
+  searchMethod(query) {
+    console.log(query);
+    // Assign to availableWagons
+
+    this.wagons.pipe(take(1)).subscribe(val => {
+      const results = val.containsInName(query);
+      this.availableWagons = val.toSearchResult(results);
+    });
   }
 
   executeActionTrain() {

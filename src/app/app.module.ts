@@ -19,6 +19,7 @@ import { Store } from '@store';
 import { AuthModule } from './auth/auth.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { AppNavComponent } from './components/app-nav/app-nav.component';
+import { NgSqUiModule } from '@sq-ui/ng-sq-ui';
 
 const localeTranslationsEn = {
   welcome: 'Welcome friend!',
@@ -35,7 +36,13 @@ registerLocaleData(localeTranslationsEn, 'en');
     AppFooterComponent,
     AppNavComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, NotFoundModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule,
+    NotFoundModule,
+    NgSqUiModule,
+  ],
   providers: [Store, { provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

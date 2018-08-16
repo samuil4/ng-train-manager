@@ -19,7 +19,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css", "src/external/v2/styles.scss"],
+            "styles": [
+              "src/styles.css",
+              "src/external/v2/styles.scss",
+              "./node_modules/@sq-ui/ng-sq-ui/sq-ui-theme.scss",
+              "./node_modules/font-awesome/scss/font-awesome.scss"
+            ],
             "scripts": []
           },
           "configurations": {

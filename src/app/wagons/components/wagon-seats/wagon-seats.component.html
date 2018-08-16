@@ -1,5 +1,7 @@
 <div class="grid css-grid">
-    <div [class]="columnsClass" *ngFor="let seat of seats" >
+    <div [class]="columnsClass" 
+      *ngFor="let seat of seats" 
+      [ngClass]="{reserved: seat.isReserved, free: !seat.isReserved}">
       {{seat.id}}
     </div>
 </div>

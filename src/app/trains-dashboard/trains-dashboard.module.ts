@@ -15,6 +15,7 @@ import { TrainDetailComponent } from './components/train-detail/train-detail.com
 import { SharedModule } from '@shared/shared.module';
 import { TrainFormComponent } from './components/train-form/train-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgSqUiModule } from '@sq-ui/ng-sq-ui';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ReactiveFormsModule,
     NgDatepickerModule,
+    NgSqUiModule,
   ],
   declarations: [
     ViewAllTrainsComponent,
